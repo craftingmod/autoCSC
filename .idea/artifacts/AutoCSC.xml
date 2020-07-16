@@ -1,0 +1,28 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="AutoCSC">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
+    <root id="archive" name="autoCSC.main.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/manifest/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="autoCSC.main" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.json/1.1.2/a507518970d55e9de24665af06d70aae91b4aaa1/javax.json-1.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core/1.3.7/8e2eb78158638b33793d204ffef0b65c4a578e1c/kotlinx-coroutines-core-1.3.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-exec/1.3/8dfb9facd0830a27b1b5f29f84593f0aeee7773b/commons-exec-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.72/8032138f12c0180bc4e51fe139d4c52b46db6109/kotlin-stdlib-1.3.72.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.3.61/2e07c9a84c9e118efb70eede7e579fd663932122/kotlin-reflect-1.3.61.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/no.tornado/tornadofx/1.7.20/6987fca136c08884e12a43e55eeb3cdf404d1177/tornadofx-1.7.20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/11.0.2/5f6929050a744aab39ebfc1e8e5dd03bcd2ad47b/javafx-controls-11.0.2-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/11.0.2/e522eb4ea422eceeee207b1c266ba3db19b2343a/javafx-graphics-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/11.0.2/7fb2e4a8528ec9e434a9ac9ee98b39af79e6dcb8/javafx-base-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-base/11.0.2/8db178adb1085d455e5ef643a48c34959c8771c1/javafx-base-11.0.2-linux.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.3.61/e91d61b7cfd9a45566b580fef18bbd5c32d505b5/kotlin-stdlib-jdk8-1.3.61.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.72/6ca8bee3d88957eaaaef077c41c908c9940492d8/kotlin-stdlib-common-1.3.72.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.3.61/70dffc5f8ac5ea7c34f30deac5b9d8b1d48af066/kotlin-stdlib-jdk7-1.3.61.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-javafx/1.3.7/be726d82a68d63f1b232893aaf2f44431add32da/kotlinx-coroutines-javafx-1.3.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.json/javax.json-api/1.1.2/b38c52a6e180359108bd5e35dbeec7d1be45c535/javax.json-api-1.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-graphics/11.0.2/ef4c34f0ca77cd99100b76c2ccf1dce383572bb1/javafx-graphics-11.0.2-linux.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
