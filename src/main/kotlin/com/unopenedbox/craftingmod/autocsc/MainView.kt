@@ -51,6 +51,9 @@ class MainView : View() {
         paddingTop = 10
         paddingBottom = 10
         this.spacing = 10.toDouble()
+        label("버전: 1.0.1, 배포: develoid 벨붕") {
+            font = Font("NanumBarunGothic", 16.toDouble())
+        }
         // ADB 설치 여부
         checkbox("adb 설치 여부", adbInstalled) {
             isDisable = true
@@ -72,19 +75,42 @@ class MainView : View() {
                 initState()
             }
         }
-        hbox {
-            spacing = 10.toDouble()
-            hbox {
-                button("테마 선택창 열기") {
-                    action {
-                        GlobalScope.launch {
-                            log("Opening theme selector")
-                            log(AdbUtil.openThemeChooser(deviceID))
-                        }
+        button("1. 고오대비 테마 설치하기") {
+            action {
+                GlobalScope.launch {
+                    log(AdbUtil.unInstallTheme(deviceID))
+                    log(AdbUtil.openLowConstructTheme(deviceID))
+                    launch(Dispatchers.JavaFx) {
+                        alert(Alert.AlertType.INFORMATION,
+                            "고오대비 테마 설치",
+                            "고오대비 테마를 밑의 다운로드 버튼을 눌러 설치만 하고, 적용은 하지않고, " +
+                                    "방금 누른 버튼 밑에 밑의 테마 선택창 열기를 선택해 주세요.")
                     }
                 }
             }
-            button("1. 테마 설치") {
+        }
+        hbox {
+            spacing = 10.toDouble()
+            button("테마 스토어 열기") {
+                action {
+                    GlobalScope.launch {
+                        log("Opening theme store")
+                        log(AdbUtil.openThemeStore(deviceID))
+                    }
+                }
+            }
+            button("테마 선택창 열기") {
+                action {
+                    GlobalScope.launch {
+                        log("Opening theme selector")
+                        log(AdbUtil.openThemeChooser(deviceID))
+                    }
+                }
+            }
+        }
+        hbox {
+            spacing = 10.toDouble()
+            button("2. CSC 테마 설치") {
                 action {
                     GlobalScope.launch {
                         log("Installing Theme")
@@ -104,7 +130,7 @@ class MainView : View() {
             checkbox("공장초기화 방지", runningWatchdog) {
                 isDisable = true
             }
-            button("2. 설정창 열기") {
+            button("3. 설정창 열기") {
                 action {
                     GlobalScope.launch {
                         resetWatchdog?.apply {
@@ -142,7 +168,7 @@ class MainView : View() {
             isWrapText = true
             alignment = Pos.TOP_LEFT
             minHeight = 400.toDouble()
-            minWidth = 300.toDouble()
+            minWidth = 200.toDouble()
             isEditable = false
             textProperty().addListener { _, _, _ ->
                 this.scrollTop = Double.MAX_VALUE

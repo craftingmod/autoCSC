@@ -13,6 +13,7 @@ import kotlin.coroutines.suspendCoroutine
 
 object AdbUtil {
     private val cwd = Paths.get("").toAbsolutePath().toString()
+    private val storePkg = "com.samsung.android.themestore"
     suspend fun getADBPath():String? {
         val out = try {
             exec(adbCmd("version"))
@@ -60,21 +61,35 @@ object AdbUtil {
         val out = exec(adbCmd("-s", deviceID, "shell", "\"getprop ro.build.version.sdk\""))
         return deviceID.trim().toIntOrNull() ?: -1
     }
+    suspend fun unInstallTheme(deviceID: String):String {
+        return execLog(adbShell(deviceID, "pm", "uninstall", "com.samsung.High_contrast_theme_II"))
+    }
     suspend fun installTheme(deviceID:String):String {
         var log = ""
-        val storePkg = "com.samsung.android.themestore"
         log += execLog(adbShell(deviceID,"pm", "uninstall", storePkg))
         log += execLog(adbShell(deviceID, "pm", "clear", storePkg))
-        log += execLog(adbShell(deviceID, "pm", "uninstall", "com.samsung.High_contrast_theme_II"))
+        log += unInstallTheme(deviceID)
         log += execLog(adbCmdID(deviceID, "install", "\"${Paths.get(cwd, "csctheme.apk")}\""))
         log += execLog(adbShell(deviceID, "am", "kill", "com.android.settings"))
-        log += execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.MainActivity"))
-        log += execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.bixby.MyDeviceMainActivityForBixby"))
+        // log += execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.MainActivity"))
+        delay(1000)
+        log += openThemeChooser(deviceID)
         return log
     }
+    suspend fun openLowConstructTheme(deviceID: String):String {
+        // Low Construct Theme II
+        val uri = "themestore://ProductDetail/000002723865?contentsType=THEMES"
+        return execLog(adbShell(deviceID,
+            "am", "start", "-a", "android.intent.action.VIEW", "-d", uri, storePkg))
+    }
+    suspend fun openThemeStore(deviceID: String):String {
+        return execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.MainActivity"))
+    }
     suspend fun openThemeChooser(deviceID:String):String {
-        val storePkg = "com.samsung.android.themestore"
-        return execLog(adbShell(deviceID, "am", "start", "-a",  "android.intent.action.MAIN", "-n", "$storePkg/$storePkg.activity.bixby.MyDeviceMainActivityForBixby"))
+        var log = ""
+        log += execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.bixby.MyDeviceMainActivityForBixby"))
+        log += execLog(adbStartActivity(deviceID, "$storePkg/$storePkg.activity.ActivityMyDeviceMain"))
+        return log
     }
     suspend fun openEULAInfo(deviceID:String):String {
         val settingPkg = "com.android.settings"
