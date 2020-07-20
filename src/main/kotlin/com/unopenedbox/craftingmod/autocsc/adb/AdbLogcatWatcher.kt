@@ -11,7 +11,7 @@ class AdbLogcatWatcher(private val resolver:(detected:Boolean) -> Unit) : LogOut
 
     override fun processLine(line: String, logLevel: Int) {
         // PreconfigService
-        if (line.contains("Send CP_CFG_READ_DONE")) {
+        if (line.contains("Send CP_CFG_READ_DONE") || line.contains("ACTION_SHUTDOWN")) {
             println("[AdbLogcatWatcher] Detected kill switch")
             resolved = true
             resolver(true)

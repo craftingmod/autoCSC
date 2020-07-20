@@ -59,7 +59,8 @@ object AdbUtil {
     }
     suspend fun getSDK(deviceID:String):Int {
         val out = exec(adbCmd("-s", deviceID, "shell", "\"getprop ro.build.version.sdk\""))
-        return deviceID.trim().toIntOrNull() ?: -1
+        println(out.trim())
+        return out.trim().toIntOrNull() ?: -1
     }
     suspend fun unInstallTheme(deviceID: String):String {
         return execLog(adbShell(deviceID, "pm", "uninstall", "com.samsung.High_contrast_theme_II"))

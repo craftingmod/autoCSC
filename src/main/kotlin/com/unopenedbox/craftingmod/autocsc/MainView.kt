@@ -51,7 +51,7 @@ class MainView : View() {
         paddingTop = 10
         paddingBottom = 10
         this.spacing = 10.toDouble()
-        label("버전: 1.0.1, 배포: develoid 벨붕") {
+        label("버전: 1.0.2, 배포: develoid 벨붕") {
             font = Font("NanumBarunGothic", 16.toDouble())
         }
         // ADB 설치 여부
@@ -155,11 +155,26 @@ class MainView : View() {
                         log("Opening EULA Activity")
                         log(AdbUtil.openEULAInfo(deviceID))
                         launch(Dispatchers.JavaFx) {
-                            alert(Alert.AlertType.WARNING, "주의",
-                                "CSC를 바꾸시기 전, 버튼 옆 공장초기화 방지가 켜져있는지 반드시 확인해 주세요.\n" +
-                                        "비활성화시 데이터가 완전히 날라갑니다.")
+                            if (deviceSDK.get() != 28) {
+                                alert(Alert.AlertType.WARNING, "주의",
+                                        "OneUI 2.x 버전은 기기가 없어서 테스트 할 수가 없어서... 테스트 못했습니다.\n" +
+                                        "백업 해주세요!")
+                            } else {
+                                alert(Alert.AlertType.WARNING, "주의",
+                                        "CSC를 바꾸시기 전, 버튼 옆 공장초기화 방지가 켜져있는지 반드시 확인해 주세요.\n" +
+                                                "비활성화시 데이터가 완전히 날라갑니다.")
+                            }
+
                         }
                     }
+                }
+            }
+        }
+        button("강제 재부팅") {
+            font = Font("NanumBarunGothic", 40.0)
+            action {
+                GlobalScope.launch {
+                    AdbUtil.forceReboot(deviceID)
                 }
             }
         }
@@ -199,6 +214,13 @@ class MainView : View() {
                         if (it.size >= 1) {
                             deviceListBox.value.set(it[0])
                         }
+                    }
+                }
+                if (devices.any { it.type == AdbDeviceType.NORMAL }) {
+                    val ids = devices.filter {it.type == AdbDeviceType.NORMAL}.map {it.id}
+                    val sdk = AdbUtil.getSDK(ids[0])
+                    launch (Dispatchers.JavaFx) {
+                        deviceSDK.set(sdk)
                     }
                 }
                 log(AdbUtil.getDevices().joinToString(","))
